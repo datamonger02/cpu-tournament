@@ -5,3 +5,4 @@ Character history viewer (how many tourneys, best performance)
 Player history viewer (how many tourneys, best performance)
 Matchup history viewer
 
+Add Sora, Piranha Plant
