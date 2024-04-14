@@ -17,7 +17,7 @@ def convert_images_to_png(folder_path):
 
 
 # Specify the folder containing webp images
-folder_path = r"Alt Renders"
+folder_path = r"you\will\not\see\my\filepath.txt"
 
 # Convert webp images to png
 convert_images_to_png(folder_path)
