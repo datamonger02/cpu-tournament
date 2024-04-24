@@ -2,12 +2,14 @@ from PIL import Image
 import os
 
 
-def convert_images_to_png(folder_path):
+def convert_images_to_png():
+    parent_folder_path = os.path.abspath(os.path.join(os.getcwd(), os.pardir))
+    folder_path = os.path.join(parent_folder_path, "Alt Renders")
     # Iterate through all files and subfolders in the folder
     for root, dirs, files in os.walk(folder_path):
         for filename in files:
             # Check if the file is a webp or jpg image
-            if filename.endswith(".webp") or filename.endswith(".jpg"):
+            if filename.endswith(".webp") or filename.endswith(".jpg") or filename.endswith(".avif"):
                 # Open the image
                 with Image.open(os.path.join(root, filename)) as img:
                     # Remove the extension from the filename and save as png
@@ -16,8 +18,5 @@ def convert_images_to_png(folder_path):
                     print(f"Converted {filename} to {png_filename}")
 
 
-# Specify the folder containing webp images
-folder_path = r"you\will\not\see\my\filepath.txt"
-
 # Convert webp images to png
-convert_images_to_png(folder_path)
+convert_images_to_png()
