@@ -40,12 +40,39 @@ def load_data():
 
 
 def character_stats(character, alt):
-    # load data
+    # load and filter data
     df = load_data()
+    df = df[(df["Character"] == character) & (df["Character Alt"] == alt)]
+
+    print("Character Stats for " + character + ", Alt Number " + str(alt))
 
     # Number of Wins and losses
+    win_count = df["Winner"].value_counts().get(True, 0)
+    loss_count = df["Winner"].value_counts().get(False, 0)
+    win_percent = win_count / (win_count + loss_count) * 100
+    print("Number of Wins: " + str(win_count))
+    print("Number of Losses: " + str(loss_count))
+    print("Win rate: " + str(win_percent) + "%")
 
     # Highest Round
+    won_tournament_rows = df[(df["Round No."] == 5) & (df["Winner"] == True)]
+    if not won_tournament_rows.empty:
+        # If True, print "Won Tournament Number" with the Tournament No. value
+        tournament_no = won_tournament_rows.iloc[0]["Tournament No."]
+        print(f"Won Tournament Number: {tournament_no}")
+    else:
+        # If False, print "Highest Round" with the maximum in the "Round No." column
+        highest_round = df["Round No."].max()
+        temp = "Error"
+        if highest_round == 1:
+            temp = "First Round"
+        elif highest_round == 2:
+            temp = "Sweet 16"
+        elif highest_round == 3:
+            temp = "Quarterfinals"
+        elif highest_round == 4:
+            temp = "Semifinals"
+        print("Highest Round: " + temp)
 
     # Match History
 
@@ -53,5 +80,5 @@ def character_stats(character, alt):
 if __name__ == "__main__":
     pd.set_option('display.max_columns', None)
     pd.set_option('display.width', None)
-    character_stats(load_data())
+    character_stats("Sonic", 5)
 
