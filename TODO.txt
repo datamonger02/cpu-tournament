@@ -1,6 +1,5 @@
 TODO:
 
-Character skin lookup
 Character history viewer (how many tourneys, best performance)
 Player history viewer (how many tourneys, best performance)
 Matchup history viewer
